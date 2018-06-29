@@ -478,6 +478,16 @@
                 }
  
             })
+            $(document).ready(function(){
+                $('form').submit(function(){
+                    $.post($(this).attr('action'), $(this).serialize(), function(response){
+                        console.log(response['cart_num']);
+                        actual_num = response['cart_num']
+                    $('#cart_num').html(actual_num);
+                    },'json');
+                    return false;
+                });
+            });
  
             // })
             // $('img').hover(function(){
@@ -585,9 +595,10 @@
             {% for item in apparels_list %}
             <div class="pic_with_desc">
                 <a href=""><img class="size_this" src="static/order/img/{{item.pic_link}}" alt="jae"></a>
-                <form action="/addcart" method="post" class="add_cart_form">
+                <form action="addcart" method="post" class="add_cart_form">
                     {% csrf_token %}
-                        <button class="btn cartbtn">Add Cart</button>
+                    <input type="hidden" name="item_id" value={{item.id}}>
+                    <button class="btn cartbtn" type="submit">Add Cart</button>
                 </form>
                 
                 <button class="btn viewbtn" onclick="location.href='http://localhost:5000'">QuickView</button>
@@ -696,18 +707,6 @@
               $('#placeholder').html(response);
            });
            return false;
-        });
-        $('.add_cart_form').submit(function(){
-            $.ajax({
-                url: '/addcart',
-                method: 'POST',
-                success: function(response){
-                    console.log(response['cart_num']);
-                    actual_num = response['cart_num']
-                    $('#cart_num').html(actual_num);
-                }
-            });
-            return false;
         });
     </script>
      

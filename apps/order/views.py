@@ -50,9 +50,10 @@ def photo_api(request):
 
 @csrf_exempt
 def addcart(request):
-    print("hello")
-    request.session['cart_num'] += 1
-    this_user = User.objects.get(id=1)
-    this_item = Item.objects.get(id=1)
-    this_user.cart_items.add(this_item)
+    if request.method == "POST":
+        print('id is',request.POST['item_id'])
+        request.session['cart_num'] += 1
+        this_user = User.objects.get(id=1)
+        this_item = Item.objects.get(id=int(request.POST['item_id']))
+        this_user.cart_items.add(this_item)
     return JsonResponse({'cart_num': request.session['cart_num']})
