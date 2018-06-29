@@ -478,15 +478,13 @@
                 }
  
             })
-            $(document).ready(function(){
-                $('form').submit(function(){
-                    $.post($(this).attr('action'), $(this).serialize(), function(response){
-                        console.log(response['cart_num']);
-                        actual_num = response['cart_num']
+            $('.add_cart_form').submit(function(){
+                $.post($(this).attr('action'), $(this).serialize(), function(response){
+                    console.log(response['cart_num']);
+                    actual_num = response['cart_num']
                     $('#cart_num').html(actual_num);
-                    },'json');
-                    return false;
-                });
+                },'json');
+                return false;
             });
  
             // })
@@ -577,7 +575,7 @@
                             {% csrf_token %}
                         <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name = "searching" id = "auto_search">
                         <button class="btn my-2 my-sm-0 search" type="submit">Search</button>
-                        <a href="" class="cart"><i class="fas fa-shopping-cart"></i></a>
+                        <a href="/order" class="cart"><i class="fas fa-shopping-cart"></i><span class="cart_num">{{request.session.cart_num}}v</span></a>
                     </form>
                     </div>
                     </nav>
@@ -622,9 +620,10 @@
             {% for item in swag_list %}
             <div class="pic_with_desc">
                 <a href=""><img class="size_this" src="static/order/img/{{item.pic_link}}" alt="jae"></a>
-                <form action="/addcart" method="post" class="add_cart_form">
+                <form action="addcart" method="post" class="add_cart_form">
                     {% csrf_token %}
-                        <button class="btn cartbtn">Add Cart</button>
+                    <input type="hidden" name="item_id" value={{item.id}}>
+                    <button class="btn cartbtn" type="submit">Add Cart</button>
                 </form>
                 <button class="btn viewbtn" onclick="location.href='http://localhost:5000'">QuickView</button>
                 <div class="rating">
@@ -645,9 +644,10 @@
                 {% for item in books_list %}
                 <div class="pic_with_desc">
                     <a href=""><img class="size_this" src="static/order/img/{{item.pic_link}}" alt="jae"></a>
-                    <form action="/addcart" method="post" class="add_cart_form">
+                    <form action="addcart" method="post" class="add_cart_form">
                         {% csrf_token %}
-                            <button class="btn cartbtn">Add Cart</button>
+                        <input type="hidden" name="item_id" value={{item.id}}>
+                        <button class="btn cartbtn" type="submit">Add Cart</button>
                     </form>
                     <button class="btn viewbtn" onclick="location.href='http://localhost:5000'">QuickView</button>
                     <div class="rating">
@@ -665,11 +665,15 @@
         </div>
 
         <div id="misc" class="d-block w-100 h-100 d-flex justify-content-center">
-            <h1>Books</h1><br>
+            <h1>Misc</h1><br>
             {% for item in misc_list %}
                 <div class="pic_with_desc">
                     <a href=""><img class="size_this" src="static/order/img/{{item.pic_link}}" alt="jae"></a>
-                    <button class="btn cartbtn" onclick="location.href='/addcart'">Add Cart</button>
+                    <form action="addcart" method="post" class="add_cart_form">
+                        {% csrf_token %}
+                        <input type="hidden" name="item_id" value={{item.id}}>
+                        <button class="btn cartbtn" type="submit">Add Cart</button>
+                    </form>
                     <button class="btn viewbtn" onclick="location.href='http://localhost:5000'">QuickView</button>
                     <div class="rating">
                         <h5>
