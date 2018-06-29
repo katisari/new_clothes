@@ -1,0 +1,705 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="clicker_prototype2.css">
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+
+    <script>
+        window.onscroll = function() {myFunction()};
+        
+        var header = document.getElementById("navbar-brand");
+        var sticky = header.offsetTop;
+        
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+            header.classList.add("sticky");
+            } else {
+            header.classList.remove("sticky");
+            }
+        }       
+    </script>
+
+
+        <script>
+            $(document).ready(function(){
+            // Add smooth scrolling to all links
+            $(".nav-link").on('click', function(event) {
+            
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                // Prevent default anchor click behavior
+                event.preventDefault();
+            
+                // Store hash
+                var hash = this.hash;
+            
+                // Using jQuery's animate() method to add smooth page scroll
+                // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 800, function(){
+            
+                    // Add hash (#) to URL when done scrolling (default click behavior)
+                    window.location.hash = hash;
+                });
+                } // End if
+            });
+            });
+        </script>
+
+        <script>
+            $(window).scroll(function() {
+            if ($(this).scrollTop() > 50 ) {
+                $('.scrolltop:hidden').stop(true, true).fadeIn();
+            } else {
+                $('.scrolltop').stop(true, true).fadeOut();
+            }
+        });
+        $(function(){$(".scroll").click(function(){$("html,body").animate({scrollTop:$(".thetop").offset().top},"1000");return false})})
+        </script>
+
+    
+
+    <title>Store Front</title>
+    <!-- <script>
+        $(document).ready(function (){
+            $(".navbar-brand").hover(function(){
+                $(this).attr('src','logo_white.png');
+            }, function(){
+                $(this).attr('src','logo_white2.png');
+            });
+
+        });
+
+    </script> -->
+    <style>
+
+    @font-face{
+        font-family: proxima;
+        src:url("{% static 'order/font/proxima_nova.otf' %}")
+
+    
+    }
+    @font-face{
+        font-family: gotham_round;
+        src: url("{% static 'order/font/gotham_round.otf' %}")
+    }
+
+    body{
+    /* height: 100%; */
+    margin: 0px;
+   }
+
+   .welcome_img{
+       text-align: center;
+       height: 100vh;
+   }
+
+   #carouselExampleIndicators{
+       padding: 2vw 2vw 1vw 2vw;
+       width: 75vw;
+       /* text-align: center; */
+   }
+    
+
+   
+
+   .nopadding{
+       padding: 0px !important;
+   }
+   .main_header{
+       padding: -15px;
+   }
+    /* .navbar{
+        height: 7vh !important;
+    } */
+       .navbar-toggler{
+           transition: all .2s ease-in-out;
+           
+
+       }
+   
+       .navbar-toggler:hover{
+           transform: scale(1.1);
+           background-color: #3E99C4;
+       }
+   
+       .navbar-brand{        
+           transition: .3s ease-in-out;
+           color: #F1F4F8 !important;
+           /* margin-left: 5vw; */
+
+       }
+       
+   
+           .navbar-brand:hover{
+               transform: scale(1.2);
+               color: #3E99C4 !important;
+           
+           }
+
+           .navbar-light .navbar-toggler {
+                /* color: #ffc107; */
+                border-color: #F1F4F8;
+            }
+
+            .navbar-light .navbar-toggler-icon {
+                background-image: url(
+                    "data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#F1F4F8' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"
+                    
+                    );
+            }
+            .navbar-nav > li > a {
+                padding-top:0px !important; 
+                padding-bottom:0px !important;
+            }
+            .navbar {
+                min-height: 2px !important;
+            }
+
+            .navbar-toggler-icon{
+                padding: 1vh !important;
+            }
+
+            .scrolltop {
+                display:none;
+                width:100%;
+                margin:0 auto;
+                position:fixed;
+                bottom:20px;
+                right:10px;	
+            }
+            .scroll {
+                position:absolute;
+                right: 1vw;
+                bottom: 2vh;
+                background:#00ADDE;
+                background: #00ADDE;
+                padding:15px;
+                text-align: center;
+                margin: 0 0 0 0;
+                cursor:pointer;
+                transition: 0.5s;
+                -moz-transition: 0.5s;
+                -webkit-transition: 0.5s;
+                -o-transition: 0.5s; 		
+            }
+            .scroll:hover {
+                background:#979797;
+                transition: 0.5s;
+                -moz-transition: 0.5s;
+                -webkit-transition: 0.5s;
+                -o-transition: 0.5s; 		
+            }
+            .scroll:hover .fa {
+                padding-top: -10px;
+            }
+            .scroll .fa {
+                font-size:30px;
+                margin-top:-5px;
+                margin-left:1px;
+                transition: 0.5s;
+                -moz-transition: 0.5s;
+                -webkit-transition: 0.5s;
+                -o-transition: 0.5s; 	
+            }
+                        
+
+            .logo_main{
+                width: 100px;
+            }
+
+           .navbar-toggler-icon{
+               color: white !important;
+           }
+
+           a{
+               color: #F1F4F8 !important;
+           }
+           li{
+               font-family: gotham_round;
+           }
+
+           head_welcome{
+               font-family: gotham_round;
+           }
+            
+           .mainer{
+               background: linear-gradient(#3D4C59, #3D4C59 50%, #3E99C4 50%, #3E99C4);
+               background-size: 100% 200%;
+               transition: 0.3s ease-in-out;
+               border-radius: 4px;
+               padding: 10px;
+               border: none;
+               outline: none;
+               margin: 0px;
+               /* color: #F1F4F8; */
+           }
+           
+           
+           .subber{
+               background: linear-gradient(#979797, #979797 50%, #3E99C4 50%, #3E99C4);
+               background-size: 100% 200%;
+               transition: 0.3s ease-in-out;
+               border-radius: 4px;
+               padding: 10px;
+               border: none;
+               outline: none;
+               margin: 0px !important;
+
+               /* color: #F1F4F8; */
+           }
+          
+
+           #clothing_options{
+               /* background-color: #25252D !important; */
+               color: #25252D !important;
+           }
+
+           
+       
+               li:hover{
+                   background-position: 100% 100%;
+                   transform: scale(1.04);  
+               }
+               .search{
+                   background-color: #06aae2;
+                   transition: 0.5s;
+
+               }
+
+               .search:hover{
+                   background-color: #3E99C4;
+                   
+               }
+                /* .btn my-2 my-sm-0 {
+                    display: inline-block;
+                    border-radius: 4px;
+                    background-color: #3F4C5A;
+                    border: none;
+                    color: #FFFFFF;
+                    text-align: center;
+                    font-size: 25px;
+                    padding: 20px;
+                    width: 200px;
+                    transition: all 0.5s;
+                    cursor: pointer;
+                    margin: 5px;
+                }
+
+                .btn my-2 my-sm-0 span {
+                    cursor: pointer;
+                    display: inline-block;
+                    position: relative;
+                    transition: 0.5s;
+                }
+
+                .btn my-2 my-sm-0 span:after {
+                    content: '\2771';
+                    position: absolute;
+                    opacity: 0;
+                    top: 0;
+                    right: -20px;
+                    transition: 0.5s;
+                }
+
+                .btn my-2 my-sm-0:hover span {
+                    padding-right: 25px;
+                }
+
+                .btn my-2 my-sm-0:hover span:after {
+                    opacity: 1;
+                    right: 0;
+                } */
+                
+        @media only screen and (max-width: 480px) {
+            container {
+                height: 80vh
+            }
+           
+            .categories{
+                width: 15vw;
+                /* height:  */
+                padding: 6vh 1vw 2vh 1vw;
+                margin-top: 10vh;
+        }
+
+            /* .boudin {
+                    display: inline-block;
+                    border-radius: 4px;
+                    background-color: #3F4C5A;
+                    border: none;
+                    color: #FFFFFF;
+                    text-align: center;
+                    font-size: 25px;
+                    padding: 20px;
+                    width: auto;
+                    transition: all 0.5s;
+                    cursor: pointer;
+                    margin: 5px;
+                } */
+        }
+
+        @media only screen and (min-width: 481px) and (max-width: 1023px) {
+            container {
+                height: 80vh
+            }
+
+            /* .boudin {
+                    display: inline-block;
+                    border-radius: 4px;
+                    background-color: #3F4C5A;
+                    border: none;
+                    color: #FFFFFF;
+                    text-align: center;
+                    font-size: 25px;
+                    padding: 20px;
+                    width: 30vw;
+                    transition: all 0.5s;
+                    cursor: pointer;
+                    margin: 5px;
+                } */
+        }
+
+        @media only screen and (min-width: 1024px) {
+            container {
+                height: 80vh
+            }
+
+            /* .boudin {
+                    display: inline-block;
+                    border-radius: 4px;
+                    background-color: #3F4C5A;
+                    border: none;
+                    color: #FFFFFF;
+                    text-align: center;
+                    font-size: 25px;
+                    padding: 20px;
+                    width: 15vw;
+                    transition: all 0.5s;
+                    cursor: pointer;
+                    margin: 5px;
+                } */
+        }
+        /* .logo_main2 {
+            width: 130px;
+            height: 195px;
+            position: relative;
+            display: inline-block;
+            margin: 50px;
+        }
+        .logo_main {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 99;
+        }
+        .logo_main:hover .img-top {
+            display: inline;
+        } */
+
+        .categories{
+            width: 15vw;
+            height: 20%;
+            padding: 6vh 1vw 2vh 1vw;
+            margin-top: 10vh;
+        }
+
+        /* J2's css */
+
+        .pic_with_desc{
+            width: 250px;
+            position: relative;
+            text-align:center;
+            margin: 0 10px;
+        }
+            .pic_with_desc img{
+                max-width: 100%;
+                height: 250px;
+            }
+            .pic_with_desc .cartbtn{
+                outline: 1px solid #009AC7;
+                position: absolute;
+                top: 60%;
+                left: 10%;
+                visibility: hidden;
+            }
+            .pic_with_desc .viewbtn{
+                outline: 1px solid #009AC7;
+                position: absolute;
+                top: 60%;
+                left: 60%;
+                visibility: hidden;
+            }
+            .pic_with_desc h5{
+                color:black
+            }
+            .pic_with_desc .price_display{
+                display:block;
+            }
+            .checked:before {
+                content: "\2605";
+            }
+        
+
+    </style>
+    <!-- <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script> -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.pic_with_desc').hover(function(){
+                $(this).find(".btn").css("visibility", "visible");
+            }, function(){
+                $(this).find(".btn").css("visibility", "hidden");
+            })
+            // $('.btn-outline-danger').click(function(){
+            //     var new_num= Number($('.num_item').text()) + 1;
+            //     $('.num_item').html(new_num);
+            // })
+            // $('.cart').click(function(e){
+            //     if (Number($('.num_item').text()) == 0) {
+            //         alert('Your cart is empty. Try again after adding something to cart');
+            //         e.preventDefault();
+            //     }
+ 
+            // })
+            // $('img').hover(function(){
+            //     var get_alt = $(this).attr('data-alt-src');
+            //     var orig_src = $(this).attr('src');
+            //     $(this).attr('src', get_alt);
+            //     $(this).attr('data-alt-src', orig_src);
+            // }, function(){
+            //     var get_alt = $(this).attr('data-alt-src');
+            //     var orig_src = $(this).attr('src');
+            //     $(this).attr('src', get_alt);
+            //     $(this).attr('data-alt-src', orig_src);
+            // })
+
+        });
+    </script>
+   
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light main_header thetop" style="background-color: #3F4C5A">
+
+            <a class="navbar-brand" href="#" data-hover="logo_white2.png">
+                <img class="logo_main" src="{% static 'order/img/logo_white.png' %}">
+                <!-- <img class="logo_main2" src="logo_white2.png"> -->
+            </a>
+
+            <!-- <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> -->
+            <h3 class="head_welcome ml-auto" style="color: white" >Hello, {{request.session.first_name}}</h3>
+
+            
+            
+            <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item mainer">
+                    <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item mainer">
+                    <a class="nav-link" href="#">Tracks</a>
+                </li>
+                <li class="nav-item mainer">
+                    <a class="nav-link" href="#">Checklist</a>
+                </li>
+                <li class="nav-item mainer">
+                        <a class="nav-link" href="#">Exams</a>
+                </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn my-2 my-sm-0 search" type="submit">Search</button>
+            </form>
+            </div> -->
+            </nav>
+
+            <nav class="navbar  sticky-top navbar-expand-md navbar-light main_header" style="background-color: #979797">
+
+                    <a class="navbar-brand" href="#" data-hover="logo_white2.png">
+                        <!-- <img class="logo_main" src="logo_white.png"> -->
+                        <!-- <img class="logo_main2" src="logo_white2.png"> -->
+                    </a>
+        
+                   
+        
+                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#subcontents" aria-controls="subcontents" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="subcontents">
+                        <ul id="clothing_options" class="navbar-nav mr-auto">
+                        <li class="nav-item subber">
+                            <a class="nav-link" href="#apparels">Apparels <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item subber">
+                            <a class="nav-link" href="#swag">Swag</a>
+                        </li>
+                        <li class="nav-item subber">
+                            <a class="nav-link" href="#books">Books</a>
+                        </li>
+
+                        <li class="nav-item subber">
+                                <a class="nav-link" href="#misc">Miscellaneous</a>
+                        </li>
+                        </ul>
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        <form class="form-inline my-2 my-lg-0" id="form_search" method='POST' action='/pics/api'>
+                            {% csrf_token %}
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name = "searching" id = "auto_search">
+                        <button class="btn my-2 my-sm-0 search" type="submit">Search</button>
+                        <a href=""><i class="fas fa-shopping-cart"></i></a>
+                    </form>
+                    </div>
+                    </nav>
+
+                  
+
+        <div class="welcome_img">
+            <img class="d-block w-100" src="{% static 'order/img/dojo_clothing.png' %}" alt="First slide">
+        </div>
+
+        <div class='scrolltop'>
+            <div class='scroll icon'><i class="fa fa-4x fa-angle-up"></i></div>
+        </div>
+        <div id="apparels" class="d-block w-100 h-100 d-flex justify-content-center">
+            {% for item in apparels_list %}
+            <div class="pic_with_desc">
+                <a href=""><img class="size_this" src="static/order/img/{{item.pic_link}}" alt="jae"></a>
+                <button class="btn cartbtn" onclick="location.href='/addcart'">Add Cart</button>
+                <button class="btn viewbtn" onclick="location.href='http://localhost:5000'">QuickView</button>
+                <div class="rating">
+                    <h5>
+                    <span class="checked">☆</span>
+                    <span>☆</span>
+                    <span>☆</span>
+                    <span>☆</span>
+                    <span>☆</span>
+                    </h5>
+                </div>
+                <a href=""><h5>{{item.name}}</h5></a>
+                Price: ${{item.price}}
+            </div>
+            {% endfor %}
+            
+            
+
+
+            <!-- <a class="categories" href=""><img class="categories" src="{% static 'order/img/black_front 2.png' %}" alt="jae"></a>
+            <a class="categories" href=""><img class="categories" src="{% static 'order/img/grey_front 2.png' %}" alt="jae"></a>
+            <a class="categories" href=""><img class="categories" src="{% static 'order/img/black_hat 2.png' %}" alt="jae"></a>
+            <a class="categories" href=""><img class="categories" src="{% static 'order/img/bucket_front (1).png' %}" alt="jae"></a> -->
+        </div>
+
+        <!-- <hr> -->
+
+        <div id="swag" class="d-block w-100 h-100 d-flex justify-content-center">
+            {% for item in swag_list %}
+            <div class="pic_with_desc">
+                <a href=""><img class="size_this" src="static/order/img/{{item.pic_link}}" alt="jae"></a>
+                <button class="btn cartbtn" onclick="location.href='/addcart'">Add Cart</button>
+                <button class="btn viewbtn" onclick="location.href='http://localhost:5000'">QuickView</button>
+                <div class="rating">
+                    <h5>
+                    <span class="checked">☆</span>
+                    <span>☆</span>
+                    <span>☆</span>
+                    <span>☆</span>
+                    <span>☆</span></h5>
+                </div>
+                <a href=""><h5>{{item.name}}</h5></a>
+                <span class="price_display">Price: ${{item.price}}</h6></span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div id="books" class="d-block w-100 h-100 d-flex justify-content-center">
+                {% for item in books_list %}
+                <div class="pic_with_desc">
+                    <a href=""><img class="size_this" src="static/order/img/{{item.pic_link}}" alt="jae"></a>
+                    <button class="btn cartbtn" onclick="location.href='/addcart'">Add Cart</button>
+                    <button class="btn viewbtn" onclick="location.href='http://localhost:5000'">QuickView</button>
+                    <div class="rating">
+                        <h5>
+                        <span class="checked">☆</span>
+                        <span>☆</span>
+                        <span>☆</span>
+                        <span>☆</span>
+                        <span>☆</span></h5>
+                    </div>
+                    <a href=""><h5>{{item.name}}</h5></a>
+                    <span class="price_display">Price: ${{item.price}}</h6></span>
+                </div>
+                {% endfor %}
+        </div>
+
+        <div id="misc" class="d-block w-100 h-100 d-flex justify-content-center">
+            <h1>Books</h1><br>
+            {% for item in misc_list %}
+                <div class="pic_with_desc">
+                    <a href=""><img class="size_this" src="static/order/img/{{item.pic_link}}" alt="jae"></a>
+                    <button class="btn cartbtn" onclick="location.href='/addcart'">Add Cart</button>
+                    <button class="btn viewbtn" onclick="location.href='http://localhost:5000'">QuickView</button>
+                    <div class="rating">
+                        <h5>
+                        <span class="checked">☆</span>
+                        <span>☆</span>
+                        <span>☆</span>
+                        <span>☆</span>
+                        <span>☆</span></h5>
+                    </div>
+                    <a href=""><h5>{{item.name}}</h5></a>
+                    <span class="price_display">Price: ${{item.price}}</h6></span>
+                </div>
+            {% endfor %}
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.carousel').carousel({
+                    interval: 1000
+                });
+                $('.carousel').carousel('cycle');
+            });
+        </script>  
+    <div id='placeholder'></div>
+    <script>
+        $('#auto_search').keyup(function() {
+           console.log('sending the following information', $('#form_search').serialize());
+           $.ajax({
+              method: "POST",
+              url: "/pics/api",
+              data: $('#form_search').serialize()
+           })
+           .done(function( response ) {
+              console.log('received response:', response);
+              $('#placeholder').html(response);
+           });
+           return false;
+        });
+    </script>
+     
+
+</body>
+</html>

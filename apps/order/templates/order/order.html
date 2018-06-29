@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Order Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <style>
+        *{
+            /* outline:1px solid black; */
+            /* font-family:Gotham Rounded Font; */
+        }
+        .number_bar {
+            text-align:center;
+        }
+            .btn_and_label{
+                width:20%;
+                display:inline-block;
+                color: #009ac7;
+            }
+                .nav-btn{
+                    border: 1px solid #009ac7;  
+
+                    font-weight:bold;
+                    border-radius:50%;
+                    transition: all .5s;
+                    font-size:300%;
+                    padding: 0px 18px;
+                    margin:20px;
+                }
+                .nav-btn:hover {
+                    color: white;
+                    background-color: #009ac7;  
+                }
+        .main_fill_out{
+            width: 40%;
+            display: inline-block;
+        }
+            .mainbtn{
+                border: 1px solid #979797;
+                pointer-events:none;
+                color:#979797;
+                vertical-align: top;
+                display:inline-block;
+            }
+            .main_pt{
+                margin: 10px 0;
+                width: 70%;
+                display:inline-block;
+            }
+        .credit_card{
+            border: 1px solid black;
+        }
+        .order_sum{
+            vertical-align: top;
+            width: 20%; 
+            display:inline-block;
+            border: 1px solid black;
+            padding: 20px;
+        }
+        .order_sum form{
+            text-align:center;
+        }
+        .order_sum h3{
+            text-align:center;
+        }
+                .order_sum td{
+                    padding: 5px;
+                } 
+                .order_sum .end{
+                    border-top:1px solid black;
+                }
+
+    </style>
+</head>
+
+<body>
+    <div class="container"></div>
+        <div class="number_bar">
+            <div class="btn_and_label">
+                <button type="button" class="btn nav-btn">1</button>
+                <h5>Review Personal Info</h5>
+            </div>
+            <div class="btn_and_label">
+                <button type="button" class="btn nav-btn">2</button>
+                <h5>Payment</h5>
+            </div>
+            <div class="btn_and_label">
+                <button type="button" class="btn nav-btn">3</button>
+                <h5>Review Items</h5>
+            </div>
+        </div>
+        <div class="main_fill_out">
+            <button type="button" class="btn nav-btn mainbtn">1</button>
+            <div class="main_pt">
+                <h2>STUDENT INFORMATION</h2>
+                <form class="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-3 col-form-label">Name:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="inputPassword">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="location" class="col-sm-3 col-form-label">Location:</label>
+                        <div class="col-sm-9">
+                            <select name="location" class="form-control">
+                                <option value="San Jose">San Jose</value>
+                                <option value="Seattle">Seattle</value>
+                                <option value="LA">LA</value>
+                                <option value="Dallas">Dallas</value>
+                                <option value="TC">TC</value>
+                                <option value="Chicago">Chicago</value>
+                                <option value="Tulsa">Tulsa</value>
+                                <option value="East Bay">East Bay</value>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="location" class="col-sm-3 col-form-label">Cohort:</label>
+                        <div class="col-sm-9">
+                            <select name="cohort" class="form-control">
+                                <option value="webfun">Web Fundamentals</value>
+                                <option value="python">Python</value>
+                                <option value="mean">Mean</value>
+                                <option value="iOS">iOS</value>
+                                <option value="netcore">.Net Core</value>
+                                <option value="java">Java</value>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </form><br><br>
+            </div>  
+
+            <button type="button" class="btn nav-btn mainbtn">2</button>
+            <div class="main_pt">
+                <h2>PAYMENT</h2>
+                <form class="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="method" class="col-sm-3 col-form-label">Payment Method:</label>
+                        <div class="col-sm-9">
+                            <input type="radio" name="pay_method" value="card"> Card
+                            <input type="radio" name="pay_method" value="paypal"> Paypal
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="info" class="col-sm-3 col-form-label">Card Information:</label>
+                        <div class="col-sm-9 credit_card">
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" name="cred_number" placeholder="ending in 9949">
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="cred_number" placeholder="MM/YY">
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-3 col-form-label">Name on Card:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="name_card">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Confirm</button>
+                </form>
+            </div>
+            <button type="button" class="btn nav-btn mainbtn">3</button>
+            <div class="main_pt">
+                <h2>REVIEW ITEMS</h2>
+                <img src="" alt="">
+                <h3>Item name</h3>
+                Subtotal :
+                Quantity: <select name="quantity">
+                        <option value="1">1</value>
+                        <option value="2">2</value>
+                        <option value="3">3</value>
+                        <option value="4">4</value>
+                        <option value="5">5</value>
+                        </select>
+                        <a href="">Delete</a>
+            </div>
+        </div>
+        <div class="order_sum">
+            <form action="your-server-side-code" method="POST">
+                <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="pk_test_hNJhBuT3YClVhcoHbqfag0td"
+                    data-amount="999"
+                    data-name="Demo Site"
+                    data-description="Example charge"
+                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                    data-locale="auto">
+                </script>
+            </form>
+            <h3>Order Summary</h3>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Items(Quantity)</td>
+                        <td>$50.92</td>
+                    </tr>
+                    <tr>
+                        <td>Discount Applied(1)</td>
+                        <td>-$10.99</td>
+                    </tr>
+                    <tr>
+                        <td>Tax(9%)</td>
+                        <td>$2.00</td>
+                    </tr>
+                    <tr>
+                        <td>Shipping</td>
+                        <td>$5.990</td>
+                    </tr>
+                    <tr class="end">
+                        <td>Order Total:</td>
+                        <td>$40.92</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    
+</body>
+</html>
