@@ -471,21 +471,18 @@
             }, function(){
                 $(this).find(".btn").css("visibility", "hidden");
             })
-            $('.cart').click(function(e){
-                if (Number($('.cart_num').text()) == 0) {
-                    alert('Your cart is empty. Try again after adding something to cart');
-                    e.preventDefault();
-                }
- 
-            })
             $('.add_cart_form').submit(function(){
                 $.post($(this).attr('action'), $(this).serialize(), function(response){
                     console.log(response['cart_num']);
                     actual_num = response['cart_num']
-                    $('#cart_num').html(actual_num);
+                    $('#cart_num').text(actual_num);
                 },'json');
                 return false;
             });
+            $('.cartbtn').click(function(){
+                actual_num = Number('#cart_num') + 1
+                $('#cart_num').text(actual_num);
+            })
  
             // })
             // $('img').hover(function(){
@@ -575,7 +572,7 @@
                             {% csrf_token %}
                         <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name = "searching" id = "auto_search">
                         <button class="btn my-2 my-sm-0 search" type="submit">Search</button>
-                        <a href="/order" class="cart"><i class="fas fa-shopping-cart"></i><span class="cart_num">{{request.session.cart_num}}v</span></a>
+                        <a href="/order" class="cart"><i class="fas fa-shopping-cart"></i><span class="cart_num"></span></a>
                     </form>
                     </div>
                     </nav>
