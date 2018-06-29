@@ -1,5 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.views.decorators.csrf import csrf_exempt
 from .models import *
+from django.http import JsonResponse
 # stripe.api_key = "sk_test_eo8n9U6JGbt0Sxmm5PQYdJtu"
 
 
@@ -13,6 +15,8 @@ from .models import *
 # )
 
 def index(request):
+    if 'cart_num' not in request.session:
+        request.session['cart_num'] = 0
     all = Item.objects.all()
     apparels = []
     swag = []
@@ -44,8 +48,11 @@ def photo_api(request):
     photos = Photo.objects.filter(name__startswith=request.POST['searching'])
     return render(request, 'order/pic_api.html', {'photos': photos})
 
+@csrf_exempt
 def addcart(request):
+    print("hello")
+    request.session['cart_num'] += 1
     this_user = User.objects.get(id=1)
     this_item = Item.objects.get(id=1)
     this_user.cart_items.add(this_item)
-    return HttpResponse("hello")
+    return JsonResponse({'cart_num': request.session['cart_num']})

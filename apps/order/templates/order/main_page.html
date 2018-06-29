@@ -438,14 +438,14 @@
                 height: 250px;
             }
             .pic_with_desc .cartbtn{
-                outline: 1px solid #009AC7;
+                border: 1px solid #009AC7;
                 position: absolute;
                 top: 60%;
                 left: 10%;
                 visibility: hidden;
             }
             .pic_with_desc .viewbtn{
-                outline: 1px solid #009AC7;
+                border: 1px solid #009AC7;
                 position: absolute;
                 top: 60%;
                 left: 60%;
@@ -471,15 +471,13 @@
             }, function(){
                 $(this).find(".btn").css("visibility", "hidden");
             })
-            // $('.btn-outline-danger').click(function(){
-            //     var new_num= Number($('.num_item').text()) + 1;
-            //     $('.num_item').html(new_num);
-            // })
-            // $('.cart').click(function(e){
-            //     if (Number($('.num_item').text()) == 0) {
-            //         alert('Your cart is empty. Try again after adding something to cart');
-            //         e.preventDefault();
-            //     }
+            $('.cart').click(function(e){
+                if (Number($('.cart_num').text()) == 0) {
+                    alert('Your cart is empty. Try again after adding something to cart');
+                    e.preventDefault();
+                }
+ 
+            })
  
             // })
             // $('img').hover(function(){
@@ -509,7 +507,7 @@
             <!-- <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button> -->
-            <h3 class="head_welcome ml-auto" style="color: white" >Hello, {{request.session.first_name}}</h3>
+            <h3 class="head_welcome ml-auto" style="color: white" >Hello, {{request.session.first_name}} </h3>
 
             
             
@@ -569,7 +567,7 @@
                             {% csrf_token %}
                         <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name = "searching" id = "auto_search">
                         <button class="btn my-2 my-sm-0 search" type="submit">Search</button>
-                        <a href=""><i class="fas fa-shopping-cart"></i></a>
+                        <a href="" class="cart"><i class="fas fa-shopping-cart"></i></a>
                     </form>
                     </div>
                     </nav>
@@ -587,7 +585,11 @@
             {% for item in apparels_list %}
             <div class="pic_with_desc">
                 <a href=""><img class="size_this" src="static/order/img/{{item.pic_link}}" alt="jae"></a>
-                <button class="btn cartbtn" onclick="location.href='/addcart'">Add Cart</button>
+                <form action="/addcart" method="post" class="add_cart_form">
+                    {% csrf_token %}
+                        <button class="btn cartbtn">Add Cart</button>
+                </form>
+                
                 <button class="btn viewbtn" onclick="location.href='http://localhost:5000'">QuickView</button>
                 <div class="rating">
                     <h5>
@@ -602,23 +604,17 @@
                 Price: ${{item.price}}
             </div>
             {% endfor %}
-            
-            
-
-
-            <!-- <a class="categories" href=""><img class="categories" src="{% static 'order/img/black_front 2.png' %}" alt="jae"></a>
-            <a class="categories" href=""><img class="categories" src="{% static 'order/img/grey_front 2.png' %}" alt="jae"></a>
-            <a class="categories" href=""><img class="categories" src="{% static 'order/img/black_hat 2.png' %}" alt="jae"></a>
-            <a class="categories" href=""><img class="categories" src="{% static 'order/img/bucket_front (1).png' %}" alt="jae"></a> -->
         </div>
 
         <!-- <hr> -->
-
         <div id="swag" class="d-block w-100 h-100 d-flex justify-content-center">
             {% for item in swag_list %}
             <div class="pic_with_desc">
                 <a href=""><img class="size_this" src="static/order/img/{{item.pic_link}}" alt="jae"></a>
-                <button class="btn cartbtn" onclick="location.href='/addcart'">Add Cart</button>
+                <form action="/addcart" method="post" class="add_cart_form">
+                    {% csrf_token %}
+                        <button class="btn cartbtn">Add Cart</button>
+                </form>
                 <button class="btn viewbtn" onclick="location.href='http://localhost:5000'">QuickView</button>
                 <div class="rating">
                     <h5>
@@ -638,7 +634,10 @@
                 {% for item in books_list %}
                 <div class="pic_with_desc">
                     <a href=""><img class="size_this" src="static/order/img/{{item.pic_link}}" alt="jae"></a>
-                    <button class="btn cartbtn" onclick="location.href='/addcart'">Add Cart</button>
+                    <form action="/addcart" method="post" class="add_cart_form">
+                        {% csrf_token %}
+                            <button class="btn cartbtn">Add Cart</button>
+                    </form>
                     <button class="btn viewbtn" onclick="location.href='http://localhost:5000'">QuickView</button>
                     <div class="rating">
                         <h5>
@@ -697,6 +696,18 @@
               $('#placeholder').html(response);
            });
            return false;
+        });
+        $('.add_cart_form').submit(function(){
+            $.ajax({
+                url: '/addcart',
+                method: 'POST',
+                success: function(response){
+                    console.log(response['cart_num']);
+                    actual_num = response['cart_num']
+                    $('#cart_num').html(actual_num);
+                }
+            });
+            return false;
         });
     </script>
      
