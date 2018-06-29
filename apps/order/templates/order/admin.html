@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Admin</title>
+</head>
+<body>
+    <h1>Welcome to the Admin Page</h1>
+    <a href="/logoff">Logoff</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Total Purchase</th>
+                <th>Cohort</th>
+                <th>Location</th>
+                <th>Order Status</th>
+                <th>Date of Order</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in all_order %}
+            <tr>
+                <th>{{i.student_name}}</th>
+                <th>{{i.total_purchase}}</th>
+                <th>{{i.cohort}}</th>
+                <th>{{i.location}}</th>
+                <th>{{i.order_status}}</th>
+                <th>{{i.created_at}}</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -550,11 +550,15 @@
                         <div class="form-group">
                             <h2>REVIEW ITEMS</h2>
                             <img src="" alt="">
-                            <h3>Item name</h3>
                         </div>
-
+                        {% for item in cart_items %}
+                        <h3>{{item.name}}</h3>
                         <div class="form-group">
-                            <label for="subtotal">Subtotal:</label>
+                            {% if item.subcategory == "tshirt" %}
+                                <label for="subtotal">Subtotal: FREE</label>
+                            {% else %}
+                            <label for="subtotal">Subtotal:{{item.price}}</label>
+                            {%endif %}
         
                         </div>
 
@@ -567,9 +571,9 @@
                                 <option value="4">4</value>
                                 <option value="5">5</value>
                             </select>
-                        </div>
-                            
+                        </div>    
                         <button type="submit" class="btn btn-danger">Delete</button>
+                        {% endfor %}
         
                     </form>
         
@@ -593,25 +597,20 @@
                         <table class="form-control">
                             <tbody>
                                 <tr>
-                                    <td>Items(Quantity)</td>
-                                    <td>$50.92</td>
-                                </tr>
-                                <tr>
-                                    <td>Discount Applied</td>
-        
-                                    <td>-$10.99</td>
+                                    <td>Items Total</td>
+                                    <td>${{item_total}}</td>
                                 </tr>
                                 <tr>
                                     <td>Tax(9%)</td>
-                                    <td>$2.00</td>
+                                    <td>${{tax}}</td>
                                 </tr>
                                 <tr>
                                     <td>Shipping</td>
-                                    <td>$5.990</td>
+                                    <td>$5.99</td>
                                 </tr>
                                 <tr class="end">
                                     <td>Order Total:</td>
-                                    <td>$40.92</td>
+                                    <td>${{order_total}}</td>
                                 </tr>
                             </tbody>
                         </table>

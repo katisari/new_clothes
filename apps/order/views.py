@@ -14,9 +14,35 @@ from django.http import JsonResponse
 #     source=token,
 # )
 
+def login(request):
+    return render(request, 'order/login.html')
+
+def login_process(request):
+    b = User.objects.get(email=request.POST['email'])
+    if b.user_type=="admin":
+        return redirect('/admin')
+    else:
+        return redirect('/')
+    return HttpResponse("yo")
+    
+
+def admin(request):
+    content = {
+        'all_order': Order.objects.all()
+    }
+    return render(request, 'order/admin.html', content)
+
+def logoff(request):
+    request.session.flush()
+    return redirect('/login')
+
+
+
 def index(request):
     if 'cart_num' not in request.session:
         request.session['cart_num'] = 0
+    
+    request.session['user_id'] = 1
     all = Item.objects.all()
     apparels = []
     swag = []
@@ -41,12 +67,31 @@ def index(request):
     return render(request, 'order/main_page.html', content)
 
 def order(request):
-    return render(request, 'order/order.html')
+    print(request.session['user_id'])
+    cart_item = User.objects.get(id=request.session['user_id']).cart_items.all()
+    item_total = 0
+    for item in cart_item:
+        item_total += item.price
+    print(item_total)
+    tax = float(item_total) * .09
+    tax = float("{0:.2f}".format(tax))
+    item_total = float("{0:.2f}".format(item_total))
+    ordertotal = float(item_total)+float(tax)+5.99
+    ordertotal = float("{0:.2f}".format(ordertotal))
+    content = {
+        "cart_items": cart_item,
+        "item_total" : item_total,
+        "tax": tax,
+        "order_total" : ordertotal
+    }
+
+    return render(request, 'order/order.html', content)
 
 def photo_api(request):
     print(" ******************IN USERS API *************************")
     photos = Photo.objects.filter(name__startswith=request.POST['searching'])
     return render(request, 'order/pic_api.html', {'photos': photos})
+
 
 @csrf_exempt
 def addcart(request):

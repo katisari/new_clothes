@@ -30,11 +30,21 @@ class Photo(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
-# class Order(models.Model):
-#     number = models.IntegerField()
-#     user = models.ForeignKey(User, related_name = "orders")
-#     created_at = models.DateTimeField(auto_now_add = True)
-#     updated_at = models.DateTimeField(auto_now = True)
+class My_Cart(models.Model):
+    user_id = models.IntegerField()
+    item_id = models.IntegerField()
+    quantity = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+class Order(models.Model):
+    student_name = models.CharField(max_length=255)
+    total_purchase = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    cohort = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    order_status = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
 
 # class Cart(models.Model):
 
