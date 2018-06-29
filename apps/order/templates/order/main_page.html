@@ -589,7 +589,7 @@
         <div id="apparels" class="d-block w-100 h-100 d-flex justify-content-center">
             {% for item in apparels_list %}
             <div class="pic_with_desc">
-                <a href=""><img class="size_this" src="static/order/img/{{item.pic_link}}" alt="jae"></a>
+                <a href="/grey_hoodie"><img class="size_this" src="static/order/img/{{item.pic_link}}" alt="jae"></a>
                 <form action="addcart" method="post" class="add_cart_form">
                     {% csrf_token %}
                     <input type="hidden" name="item_id" value={{item.id}}>
@@ -662,10 +662,9 @@
         </div>
 
         <div id="misc" class="d-block w-100 h-100 d-flex justify-content-center">
-            <h1>Misc</h1><br>
             {% for item in misc_list %}
                 <div class="pic_with_desc">
-                    <a href=""><img class="size_this" src="static/order/img/{{item.pic_link}}" alt="jae"></a>
+                    <a href = ""><img class="size_this" src="static/order/img/{{item.pic_link}}" alt="jae"></a>
                     <form action="addcart" method="post" class="add_cart_form">
                         {% csrf_token %}
                         <input type="hidden" name="item_id" value={{item.id}}>

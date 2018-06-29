@@ -9,4 +9,6 @@ urlpatterns = [
     url(r'^addcart$', views.addcart),
     url(r'^pics/api$', views.photo_api),
     url(r'^logoff$', views.logoff),
+    url(r'^grey_hoodie$', views.grey_hoodie),
+    url(r'^logo$', views.logo)
 ]                            # anticipation of all the routes that will be coming soon

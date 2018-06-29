@@ -13,7 +13,8 @@ from django.http import JsonResponse
 #     description='Example charge',
 #     source=token,
 # )
-
+def logo(request):
+    return render(request, 'order/index.html')
 def login(request):
     return render(request, 'order/login.html')
 
@@ -36,7 +37,8 @@ def logoff(request):
     request.session.flush()
     return redirect('/login')
 
-
+def grey_hoodie(request):
+    return render(request, 'order/descriptor.html')
 
 def index(request):
     if 'cart_num' not in request.session:

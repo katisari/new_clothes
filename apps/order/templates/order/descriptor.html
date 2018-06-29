@@ -1,0 +1,775 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="clicker_prototype2.css">
+    <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+    <script>
+        window.onscroll = function() {myFunction()};
+        
+        var header = document.getElementById("navbar-brand");
+        var sticky = header.offsetTop;
+        
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+            header.classList.add("sticky");
+            } else {
+            header.classList.remove("sticky");
+            }
+        }       
+    </script>
+
+
+        <script>
+            $(document).ready(function(){
+            // Add smooth scrolling to all links
+            $(".nav-link").on('click', function(event) {
+            
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                // Prevent default anchor click behavior
+                event.preventDefault();
+            
+                // Store hash
+                var hash = this.hash;
+            
+                // Using jQuery's animate() method to add smooth page scroll
+                // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 800, function(){
+            
+                    // Add hash (#) to URL when done scrolling (default click behavior)
+                    window.location.hash = hash;
+                });
+                } // End if
+            });
+            $(function(){
+                $("#tabs a").click(function(){
+                    $(".newscontainer").hide();
+                    var myDiv = $(this).attr("href");
+                    $(myDiv).fadeIn(700);
+                });
+            });
+
+
+            $('.button-male').click(function() { 
+                $(this).toggleClass('selected');
+            });
+
+            $('.button-female').click(function() { 
+                $(this).toggleClass('selected');
+            });
+
+
+            $('.dot').click(function() { 
+                $(this).toggleClass('selected');
+            });
+
+            $('.sizes').click(function() { 
+                $(this).toggleClass('selected');
+            });
+
+            $('.cart_heart').click(function() { 
+                $(this).toggleClass('selected');
+            });
+
+            $('.money').click(function() { 
+                $(this).toggleClass('selected');
+            });
+            });
+        
+        </script>
+
+        <script>
+            $(window).scroll(function() {
+            if ($(this).scrollTop() > 50 ) {
+                $('.scrolltop:hidden').stop(true, true).fadeIn();
+            } else {
+                $('.scrolltop').stop(true, true).fadeOut();
+            }
+        });
+        $(function(){$(".scroll").click(function(){$("html,body").animate({scrollTop:$(".thetop").offset().top},"1000");return false})})
+        </script>
+
+    
+
+    <title>Store Front</title>
+    <!-- <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                $("#div1").fadeIn(300);
+                $("#div2").fadeIn(500);
+                $("#div3").fadeIn(700);
+                $("#div4").fadeIn(31000);
+
+            });
+        });
+    </script> -->
+    <style>
+
+    @font-face{
+        font-family: proxima;
+        src:url("{% static 'order/font/proxima_nova.otf' %}")
+
+    
+    }
+    @font-face{
+        font-family: gotham_round;
+        src: url("{% static 'order/font/gotham_round.otf' %}")
+    }
+
+    /* #page{           #code to play with lg image background
+            max-height: 60vh;
+            } */
+
+    body{
+    /* height: 100%; */
+    margin: 0px;
+   }
+
+   .welcome_img{
+       text-align: center;
+       height: 100vh;
+
+   }
+
+   #carouselExampleIndicators{
+       padding: 2vw 2vw 1vw 2vw;
+       width: 75vw;
+       /* text-align: center; */
+   }
+    
+
+   
+
+   .nopadding{
+       padding: 0px !important;
+   }
+   .main_header{
+       padding: -15px;
+   }
+    /* .navbar{
+        height: 7vh !important;
+    } */
+       .navbar-toggler{
+           transition: all .2s ease-in-out;
+           
+
+       }
+   
+       .navbar-toggler:hover{
+           transform: scale(1.1);
+           background-color: #3E99C4;
+       }
+   
+       .navbar-brand{        
+           transition: .3s ease-in-out;
+           color: #F1F4F8 !important;
+           /* margin-left: 5vw; */
+
+       }
+       
+       
+   
+           .navbar-brand:hover{
+               transform: scale(1.2);
+               color: #3E99C4 !important;
+           
+           }
+
+           .navbar-light .navbar-toggler {
+                /* color: #ffc107; */
+                border-color: #F1F4F8;
+            }
+
+            .navbar-light .navbar-toggler-icon {
+                background-image: url(
+                    "data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#F1F4F8' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"
+                    
+                    );
+            }
+            .navbar-nav > li > a {
+                padding-top:0px !important; 
+                padding-bottom:0px !important;
+            }
+            .navbar {
+                min-height: 2px !important;
+            }
+
+            .navbar-toggler-icon{
+                padding: 1vh !important;
+            }
+
+            .scrolltop {
+                display:none;
+                width:100%;
+                margin:0 auto;
+                position:fixed;
+                bottom:20px;
+                right:10px;	
+            }
+            .scroll {
+                position:absolute;
+                right: 1vw;
+                bottom: 2vh;
+                background:#00ADDE;
+                background: #00ADDE;
+                padding:15px;
+                text-align: center;
+                margin: 0 0 0 0;
+                cursor:pointer;
+                transition: 0.5s;
+                -moz-transition: 0.5s;
+                -webkit-transition: 0.5s;
+                -o-transition: 0.5s; 		
+            }
+            .scroll:hover {
+                background:#979797;
+                transition: 0.5s;
+                -moz-transition: 0.5s;
+                -webkit-transition: 0.5s;
+                -o-transition: 0.5s; 		
+            }
+            .scroll:hover .fa {
+                padding-top: -10px;
+            }
+            .scroll .fa {
+                font-size:30px;
+                margin-top:-5px;
+                margin-left:1px;
+                transition: 0.5s;
+                -moz-transition: 0.5s;
+                -webkit-transition: 0.5s;
+                -o-transition: 0.5s; 	
+            }
+                        
+
+            .logo_main{
+                width: 100px;
+            }
+
+           .navbar-toggler-icon{
+               color: white !important;
+           }
+
+           a{
+               color: #F1F4F8 !important;
+           }
+           li{
+               font-family: gotham_round;
+           }
+
+           head_welcome{
+               font-family: gotham_round;
+           }
+            
+           .mainer{
+               background: linear-gradient(#3D4C59, #3D4C59 50%, #3E99C4 50%, #3E99C4);
+               background-size: 100% 200%;
+               transition: 0.3s ease-in-out;
+               border-radius: 4px;
+               padding: 10px;
+               border: none;
+               outline: none;
+               margin: 0px;
+           }
+           
+           
+           .subber{
+               background: linear-gradient(#979797, #979797 50%, #3E99C4 50%, #3E99C4);
+               background-size: 100% 200%;
+               transition: 0.3s ease-in-out;
+               border-radius: 4px;
+               padding: 10px;
+               border: none;
+               outline: none;
+               margin: 0px !important;
+
+           }
+          
+
+           #clothing_options{
+               color: #25252D !important;
+           }
+
+           
+       
+               li:hover{
+                   background-position: 100% 100%;
+                   transform: scale(1.04);  
+               }
+               .search{
+                   background-color: #06aae2;
+                   transition: 0.5s;
+
+               }
+
+               .search:hover{
+                   background-color: #3E99C4;
+                   
+               }
+               
+               .male{
+                   display: inline-block;
+               }
+               .female{
+                   vertical-align: top;
+                   display: inline-block;
+               }
+                
+        @media only screen and (max-width: 480px) {
+            container {
+                height: 80vh
+            }
+           
+            .categories{
+                display: block;
+                width: 40px;
+                height: 80px;
+            }
+
+        
+
+        }
+
+        @media only screen and (min-width: 481px) and (max-width: 1023px) {
+            container {
+                height: 80vh
+            }
+
+           
+
+        }
+
+        @media only screen and (min-width: 1024px) {
+            container {
+                height: 80vh
+            }
+
+           
+        }
+       
+
+        .categories{
+            display: block;
+            /* vertical-align: top; */
+            width: 90px;
+            height: 120px;
+            transition: .3s ease-in-out;
+            border: solid #333333 4px;
+            margin: 5px;
+            margin-top: 20px;
+
+        }
+        .categories:hover{
+            transform: scale(1.2);
+            border: solid #009ac7 4px;
+        }
+
+        .categories:active{
+            border: solid #009ac7 4px;
+        }
+
+        .categories:focus{
+            border: solid #009ac7 4px;
+        }
+
+        .titler{
+            margin: 20px;
+            padding-bottom: 40px;
+            border-bottom: solid black 2px;
+        }
+
+        /* .money{
+            color: white;
+            background-color: #333333;
+            margin: 10px;
+            padding-left: 5px;
+            padding-right: 5px;
+
+        } */
+
+        .bodier{
+            margin: 20px;
+            padding-bottom: 20px;
+            border-bottom: solid black 2px;
+        }
+
+
+        
+
+        #page{
+            margin-top: 20px;
+            background-color: #979797;
+            text-align: center;
+            padding-bottom: 20px;
+            
+        }
+        .button-male{
+            vertical-align: center;
+            margin-top: 20px;
+            background-color: #333333;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        .button-female{
+            vertical-align: center;
+            margin-top: 20px;
+            background-color: #333333;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        button.selected{
+            background-color: #009ac7;
+        }
+
+        .sizes{
+            background-color: #333333;
+            color: white;
+            display: inline-block;
+            font-family: proxima;
+            border-radius: 8px;
+            vertical-align: center;
+            padding: 10px;
+        }
+        
+        .footier{
+            margin-top: 30px;
+            text-align: center;
+        }
+        .cart{
+            color: white;
+            display: inline-block;
+            font-family: proxima;
+            /* border-radius: 8px; */
+            vertical-align: center;
+            background-color: #00C177;
+            padding: 15px 32px;
+        }
+
+        .cart_heart{
+            background-color: #333333;
+            padding: 15px 25px;
+            color: white;
+
+        }
+
+        
+
+
+
+
+
+        .button-female{
+            vertical-align: center;
+            margin-top: 20px;
+            background-color: #333333;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        .button-female:active{
+            background-color: #009ac7;
+        }
+
+        .button-male:focus{
+            background-color: #009ac7;
+        }
+
+        .checked {
+            color: orange;
+        }
+       
+           
+        .categories1{
+            display: block;
+            width: 100%;
+            /* height: 100%; */
+        }
+
+        .newscontainer{
+            display: none;
+            margin-top: 20px;
+        }
+
+
+
+
+        /* J2's css */
+
+        .pic_with_desc{
+            width: 300px;
+            position: relative;
+            text-align:center;
+            margin: 0 10px;
+        }
+            .pic_with_desc img{
+                max-width: 100%;
+            }
+            .pic_with_desc .cartbtn{
+                position: absolute;
+                top: 60%;
+                left: 10%;
+                visibility: hidden;
+            }
+            .pic_with_desc .viewbtn{
+                position: absolute;
+                top: 60%;
+                left: 60%;
+                visibility: hidden;
+            }
+            .pic_with_desc h5{
+                color:black
+            }
+            .checked:before {
+                content: "\2605";
+            }
+    .dot{
+        height: 50px;
+        width: 50px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: .3s ease-in-out;
+        border: solid black 2px;
+        margin-bottom: 20px;
+    }
+    .dot:hover{
+            transform: scale(1.2);
+
+            border: solid #009ac7 4px;
+    }
+
+    .dot.selected{
+        border: solid #009ac7 4px;
+        
+    }
+
+
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.pic_with_desc').hover(function(){
+                $(this).find(".btn").css("visibility", "visible");
+            }, function(){
+                $(this).find(".btn").css("visibility", "hidden");
+            })
+
+        });
+    </script>
+   
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light main_header thetop" style="background-color: #3F4C5A">
+
+            <a class="navbar-brand" href="/" data-hover="logo_white2.png">
+                <img class="logo_main" src="{% static 'order/img/logo_white.png' %}">
+            </a>
+
+            <h3 class="head_welcome ml-auto" style="color: white" >Hello, {{request.session.first_name}}</h3>
+
+            </nav>
+
+            <nav class="navbar  sticky-top navbar-expand-md navbar-light main_header" style="background-color: #979797">
+
+                    <a class="navbar-brand" href="#" data-hover="logo_white2.png">
+
+                    </a>
+        
+                   
+        
+                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#subcontents" aria-controls="subcontents" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="subcontents">
+                        <ul id="clothing_options" class="navbar-nav mr-auto">
+                            <li class="nav-item subber">
+                                <a class="nav-link" href="#apparels">Apparels <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item subber">
+                                <a class="nav-link" href="#swag">Swag</a>
+                            </li>
+                            <li class="nav-item subber">
+                                <a class="nav-link" href="#books">Books</a>
+                            </li>
+
+                            <li class="nav-item subber">
+                                    <a class="nav-link" href="#">Miscellaneous</a>
+                            </li>
+                        </ul>
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        <form class="form-inline my-2 my-lg-0" id="form_search" method='POST' action='/pics/api'>
+                            {% csrf_token %}
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name = "searching" id = "auto_search">
+                        <button class="btn my-2 my-sm-0 search" type="submit">Search</button>
+                        <a href=""><i class="fas fa-shopping-cart"></i></a>
+
+
+                    </form>
+                    </div>
+                    </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="smol col-lg-3">
+                    <div id="tab-holder">
+                        <div id="tabs">
+                            <div class="male">
+                                <button id="button-male" class="button-male">
+                                    Men
+                                </button>
+                                <div id="div1" style="margin-top:4px;">
+                                    <a href="#tab1" class="tab1">
+                                        <img class="categories newscontainer1" src="{% static 'order/img/j_front (2).png' %}" alt="jae">
+                                    </a>
+                                </div>
+        
+                                <div id="div2" style="margin-top:4px;">
+                                    <a href="#tab2" class="tab2">
+                                        <img class="categories" src="{% static 'order/img/j_back (1).png' %}" alt="jae">
+                                    </a>
+                                </div>
+    
+                                <div id="div3" style="margin-top:4px;">
+                                    <a href="#tab3" class="tab3">
+                                        <img class="categories" src="{% static 'order/img/t_pwer.png' %}" alt="jae">
+                                    </a>
+                                </div>
+    
+                                <div id="div4" style="margin-top:4px;">
+                                    <a href="#tab4" class="tab4">
+                                        <img class="categories" src="{% static 'order/img/t_back22.png' %}" alt="jae">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="female">
+                                <button class="button-female">Women</button>
+
+                                <div style="margin-top:4px;">
+                                    <a href="#tab5" class="tab5">
+                                        <img class="categories" src="{% static 'order/img/ter_front.png' %}" alt="jae">
+                                    </a>
+                                </div>
+                                <div style="margin-top:4px;">
+                                    <a href="#tab6" class="tab6">
+                                        <img class="categories" src="{% static 'order/img/ter_power (1).png' %}" alt="jae">
+                                    </a>
+                                </div>
+                                <div style="margin-top:4px;">
+                                    <a href="#tab7" class="tab7">
+                                        <img class="categories" src="{% static 'order/img/steph_front.png' %}" alt="jae">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="page" class="smol col-md-6 col-lg-4">
+                    <div id="tab1" class="newscontainer tab1">
+                        <img class="categories1" src="{% static 'order/img/j_front (2).png' %}" alt="jae">
+                    </div> 
+                    <div id="tab2" class="newscontainer tab2">
+                        <img class="categories1" src="{% static 'order/img/j_back.png' %}" alt="jae">
+                    </div>
+                    <div id="tab3" class="newscontainer tab3">
+                        <img class="categories1" src="{% static 'order/img/t_pwer.png' %}" alt="jae">
+                    </div> 
+                    <div id="tab4" class="newscontainer tab4">
+                        <img class="categories1" src="{% static 'order/img/t_back22.png' %}" alt="jae">
+                    </div>
+                    <div id="tab5" class="newscontainer tab5">
+                        <img class="categories1" src="{% static 'order/img/ter_front.png' %}" alt="jae">
+                    </div>  
+                    <div id="tab6" class="newscontainer tab6">
+                        <img class="categories1" src="{% static 'order/img/ter_power (1).png' %}" alt="jae">
+                    </div>  
+                    <div id="tab7" class="newscontainer tab7">
+                        <img class="categories1" src="{% static 'order/img/steph_front.png' %}" alt="jae">
+                    </div>  
+                </div>
+
+                <div class="smol col-md-4 col-lg-4">
+                    <div class="titler">
+                        <h2>GREY HOODIE</h2>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span><br>
+                        
+                        <!-- <button class="money"><i class="fas fa-dollar-sign"></i></button> -->
+                    </div>
+
+                    <div class="bodier">
+                        <div class="color_option">
+                            <h4>Colors</h4>
+                            <button class="dot" style="background-color: #25252d"></button>
+                            <button class="dot" style="background-color: #969696"></button>
+                            <button class="dot" style="background-color: white"></button>
+                        </div>
+                            
+                        <div class="sizer">
+                            <button class="sizes">Small</button>
+                            <button class="sizes">Medium</button>
+                            <button class="sizes">Large</button>
+                        </div>
+                    </div>
+                    <div class="footier">
+
+                        <a href=""><button class="cart">Add To Cart</button></a>
+                        <button class="cart_heart"><i class="fas fa-heart"></i>
+
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+
+
+</body>
+</html>

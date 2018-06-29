@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+
+    <title>bitch'n ass clothing dojo logo</title>
+
+    <style>
+        .over-box{
+            /* display: inline-block; */
+            vertical-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="over-box">
+                <script>
+                        var box = Snap(1000, 1000);
+                        var rect1 = box.rect(200, 0, 100, 600);
+                        var rect2 = box.rect(600, 0, 100, 600);
+                        var rect3 = box.rect(170, 0, 565, 100);
+                        var rect4 = box.rect(100, 0, 700, 125);
+                        
+                        rect1.attr({
+                            fill: "#00ADDE",
+                            opacity: "0",
+                        });
+        
+                        rect2.attr({
+                            fill: "#00ADDE",
+                            opacity: "0",
+        
+                        });
+                        rect3.attr({
+                            fill: "#00ADDE",
+                            opacity: "0",
+        
+                        });
+                        rect4.attr({
+                            fill: "#00ADDE",
+                            opacity: "0",
+        
+                        });
+        
+                        rect1.animate({y: 250}, 400);
+                        rect2.animate({y: 250}, 600);
+                        rect3.animate({y: 350}, 800);
+                        rect4.animate({y: 125}, 1000);
+                        
+                        // rect1.attr({fill: "r()#fff-#000"});
+                        setTimeout(function(){rect1.animate({opacity:"1"},1000)}, 250);
+                        setTimeout(function(){rect2.animate({opacity:"1"},1000)}, 350);
+                        setTimeout(function(){rect3.animate({opacity:"1"},1000)}, 450);
+                        setTimeout(function(){rect4.animate({opacity:"1"},1000)}, 850);
+        
+        
+                </script>
+            </div>
+            
+            <a href="/login">Let's Go</a>
+    </div>
+    
+
+        <!-- <script>
+            const s = new Snap("#jump-animation").attr({viewBox: "0 0 330 200"});
+
+            const triangle = s.polygon(x0, y0, x1, y1, x2, y2).attr({fill: color});
+
+            const plank = s.line(0,0, plankLength, 0);
+            const plankBox = plank.getBBox();
+            const plankMatrix = new Snap.Matrix();
+            plankMatrix.translate(plankOffsetX, plankOffsetY);
+            plankMatrix.rotate(startingTriangleAngle, plankBox.cx, plankBox.cy);
+            plank.attr({strokeWidth: 5, stroke: "brown", transform: plankMatrix});
+
+
+            const weightScaleFactor = 0.15;
+            const weightMatrix = new Snap.Matrix();
+            weightMatrix.translate(640, 264);
+            weightMatrix.scale(weightScaleFactor);
+            const jsLogo = await new Promise((resolve) => Snap.load("https://anilogo-gcucwsckgj.now.sh/img/js.svg", ( fragment ) => {
+                const logo = fragment.select("g");
+                logo.attr({transform: weightMatrix});
+                s.append(fragment);
+                resolve(logo);
+            }));
+
+            const path = s.path("M10,44Q38,-40,89,167")
+            path.attr({fill: "none"})
+            const curveLength = path.getTotalLength();
+
+            const topTriBox = topTriangle.getBBox();
+            const moveToPoint = path.getPointAtLength(curveLength);
+            const topTriDownMtx = new Snap.Matrix();
+            topTriDownMtx.translate(moveToPoint.x - 10, moveToPoint.y - 44);
+            topTriDownMtx.rotate(plankAngle, topTriBox.cx, topTriBox.cy);
+            topTriangle.attr({transform: topTriDownMtx});
+
+            const weightDownMtx = weightUpMtx.clone();
+            weightDownMtx.translate(0, 205/weightScaleFactor);
+            jsLogo.animate({transform: weightDownMtx}, duration*0.5, mina.bounce);
+        </script> -->
+        
+    </div>
+
+        
+
+</body>
+</html>
